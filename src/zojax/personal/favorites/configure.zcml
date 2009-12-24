@@ -1,0 +1,98 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.personal.favorites">
+
+  <permission
+     id="zojax.PersonalFavorites"
+     title="Personal favorites"
+     description="Allow personal favorites for member." />
+
+  <!-- favorites permission -->
+  <zojax:permission
+     permission="zojax.PersonalFavorites"
+     category="zojax.personal.space.interfaces.IPersonalPermission" />
+
+  <!-- favorites workspace -->
+  <adapter
+     name="favorites"
+     factory=".workspace.FavoritesWorkspaceFactory" />
+
+  <utility
+     name="favorites"
+     factory=".workspace.FavoritesDescription" />
+
+  <!-- favorites workspace -->
+  <zojax:content
+     name="personal.favorites"
+     title="Favorites workspace"
+     class=".workspace.FavoritesWorkspace"
+     schema=".interfaces.IFavoritesWorkspace"
+     contains=".interfaces.IFavoriteType"
+     type="zojax.content.type.interfaces.IInactiveType" />
+
+  <class class=".workspace.FavoritesWorkspace">
+    <implements interface="zojax.ownership.interfaces.IInheritOwnership" />
+    <implements interface="zojax.content.type.interfaces.IContainerContentsAware" />
+    <implements interface="zojax.content.type.interfaces.IRenameNotAllowed" />
+    <implements interface="zojax.content.type.interfaces.IUnremoveableContent" />
+    <implements interface="zojax.extensions.interfaces.IExtensible" />
+    <implements interface="zojax.catalog.interfaces.ISearchContext" />
+
+    <require
+       permission="zope.View"
+       interface=".interfaces.IFavoritesWorkspace
+      zojax.content.type.interfaces.IItem
+      zope.app.container.interfaces.IReadContainer" />
+
+    <require
+       permission="zojax.ModifyContent"
+       interface="zope.app.container.interfaces.IWriteContainer"
+       set_schema=".interfaces.IFavoritesWorkspace
+       zojax.content.type.interfaces.IItem" />
+  </class>
+
+  <adapter factory=".workspace.getFavoriteStorage" />
+
+  <!-- link favorites -->
+  <zojax:content
+     name="favorite.link"
+     title="Link"
+     class=".link.PersonalLink"
+     schema=".interfaces.IPersonalLink"
+     containers="personal.favorites"
+     type="zojax.content.type.interfaces.IActivePortalType
+           .interfaces.IFavoriteType"
+     contenttype=".interfaces.IPersonalLinkType"
+     permission="zojax.PersonalFavorites" />
+
+  <class class=".link.PersonalLink">
+    <implements interface="zojax.ownership.interfaces.IInheritOwnership" />
+    <implements interface="zojax.content.type.interfaces.ISearchableContent" />
+    <implements interface="zojax.content.type.interfaces.ITitleBasedName" />
+    <implements interface="zojax.content.tagging.interfaces.IContentTaggable" />
+
+    <require
+       permission="zope.View"
+       interface=".interfaces.IPersonalLink" />
+
+    <require
+       permission="zojax.PersonalFavorites"
+       set_schema=".interfaces.IPersonalLink" />
+  </class>
+
+  <!-- preference -->
+  <zojax:preferenceGroup
+     id="personalfavorites"
+     schema=".interfaces.IPersonalFavorites"
+     title="Personal favorites"
+     description="These are the preferences related to personal favorites." />
+
+  <!-- portlets -->
+  <include package=".portlets" />
+
+  <!-- browser views -->
+  <include package=".browser" />
+
+</configure>

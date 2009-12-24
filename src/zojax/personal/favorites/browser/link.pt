@@ -1,0 +1,6 @@
+<tal:block i18n:domain="zojax.personal.favorites">
+  <br />
+
+  <a tal:attributes="href context/url" target="_blank" 
+     tal:content="context/url"></a>
+</tal:block>

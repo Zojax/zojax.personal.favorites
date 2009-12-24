@@ -1,0 +1,62 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.personal.favorites">
+  
+  <adapter factory=".breadcrumb.FavoritesWorkspaceBreadcrumb" />
+  
+  <!-- workspace -->
+  <browser:defaultView
+     name="index.html"
+     for="..interfaces.IFavoritesWorkspace" />
+
+  <!-- personal link -->
+  <zojax:pagelet
+     name="index.html"
+     for="..interfaces.IPersonalLink"
+     template="link.pt"
+     provides="zojax.content.type.interfaces.IContentView"
+     permission="zope.Public" />
+
+  <!-- favorites workspace -->
+  <zojax:pagelet
+     name="index.html"
+     for="..interfaces.IFavoritesWorkspace"
+     template="workspace.pt"
+     class=".workspace.WorkspaceView"
+     permission="zope.View" />
+
+  <!-- contents table -->
+  <adapter
+     name="personal.favorites"
+     provides="zope.contentprovider.interfaces.IContentProvider"
+     factory=".workspace.PersonalFavoritesTable" />
+
+  <!-- icons -->
+  <browser:icon
+     name="zmi_icon"
+     file="icons/favorites.png"
+     for="..interfaces.IFavoritesWorkspace" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/favorites.png"
+     for="..interfaces.IFavoritesWorkspaceFactory" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/link.png"
+     for="..interfaces.IPersonalLink" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/link.png"
+     for="..interfaces.IPersonalLinkType" />
+
+  <browser:icon
+     name="icon-overview"
+     file="icons/overview.gif"
+     for="..interfaces.IFavoritesWorkspace" />
+
+</configure>
