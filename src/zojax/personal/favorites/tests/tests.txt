@@ -1,0 +1,133 @@
+=============
+Browser tests
+=============
+
+    >>> from zope import component, interface, event
+    >>> from zope.testbrowser.testing import Browser
+    >>> from zope.app.testing.functional import sync
+    >>> from zope.lifecycleevent import ObjectCreatedEvent
+    >>> from zope.app.intid import IntIds
+    >>> from zope.app.intid.interfaces import IIntIds
+    >>> from zope.app.testing.functional import getRootFolder
+    >>> from zojax.catalog.catalog import Catalog, ICatalog
+    >>> from zojax.personal.space.manager import PersonalSpaceManager, IPersonalSpaceManager
+
+    >>> root = getRootFolder()
+
+Browsers
+
+    >>> user1 = Browser()
+    >>> user1.addHeader("Authorization", "Basic user1:userpw")
+    >>> user1.handleErrors = False
+    >>> user1.open('http://localhost/people/')
+    >>> user1.getLink('Personal space').click()
+
+We get not found cause we have no permission
+    >>> user1.getLink('Favorites').click()
+    Traceback (most recent call last):
+    ...
+    LinkNotFoundError
+
+We give the permission
+    >>> from zope.securitypolicy.interfaces import IPrincipalPermissionManager
+    >>> IPrincipalPermissionManager(getRootFolder()).grantPermissionToPrincipal(
+    ...     'zojax.PersonalFavorites', 'zope.user1')
+
+    >>> user1.reload()
+    >>> user1.getLink('Favorites').click()
+
+    >>> 'You do not have favorites yet.' in user1.contents
+    True
+
+Let's create link
+
+    >>> user1.getLink('Add Link').click()
+    >>> user1.getControl('Title').value = 'Some Site'
+    >>> user1.getControl('Description').value = 'Some Super Site'
+
+We can enter not strict url values
+
+    >>> user1.getControl('URL').value = 'www.google.com/'
+    >>> user1.getControl('Content short name').value = 'some'
+    >>> user1.getControl('Add').click()
+
+We are moved to newly created link
+    >>> user1.url
+    'http://localhost/people/user1/favorites/some/'
+
+    >>> user1.getLink('http://www.google.com/')
+    <Link text='http://www.google.com/' url='http://www.google.com/'>
+
+We can edit link
+    >>> user1.getLink('Edit Link').click()
+    >>> user1.getControl('URL').value
+    'http://www.google.com/'
+
+    >>> user1.open('http://localhost/people/user1/favorites')
+    >>> print user1.contents
+    <html>
+    ...
+    <h2>Your Latest Favorites</h2>
+    <div class="z-page-description">Below is a list of favorites you created.</div>
+    ...
+    <tr class="z-table-record odd">
+      <td class="ctb-typeicon">
+        <img src="..." alt="PersonalLinkType" ... />
+      </td>
+      <td class="ctb-title">
+        <a href="http://localhost/people/user1/favorites/some/"
+           title="Some Super Site">Some Site</a>
+      </td>...
+    ...
+    </html>
+
+    >>> user2 = Browser()
+    >>> user2.addHeader("Authorization", "Basic user2:userpw")
+    >>> user2.handleErrors = False
+
+
+View from another user's
+
+    >>> user2.open('http://localhost/people/user1/favorites')
+    >>> print user2.contents
+    <html>
+    ...
+    <div class="z-page-description">Below is a list of favorites User1 created.</div>
+    ...
+    <tr class="z-table-record odd">
+      <td class="ctb-typeicon">
+      <img src="http://localhost/@@/zojax-personal-favorites-interfaces-IPersonalLinkType-zmi_icon.png" alt="PersonalLinkType" width="16" height="16" border="0" />
+    </td>
+      <td class="ctb-title">
+      <a href="http://localhost/people/user1/favorites/some/"
+         title="Some Super Site">Some Site</a>
+    </td>...
+    ...
+    </html>
+
+We see links in portlet in profile
+
+    >>> user1.open('http://localhost/people/')
+    >>> user1.getLink('Personal space').click()
+    >>> user1.getLink('Favorites').click()
+    >>> print user1.contents
+    <html>
+    ...
+    ...<div class="z-portlet portlet-yourfavorites">
+      <h2 class="z-portlet-header">
+        My Links
+      </h2>
+      <div class="z-portlet-body">
+        <div class="z-portlet-item even">
+          <img src="http://localhost/@@/zojax-personal-favorites-interfaces-IFavoritesWorkspace-icon-overview.gif" />
+          <a href="http://localhost/people/user1/favorites/">Overview</a>
+        </div>
+        <div class="z-portlet-item odd">
+        <img src="http://localhost/@@/zojax-personal-favorites-interfaces-IPersonalLink-zmi_icon.png" alt="PersonalLink" width="16" height="16" border="0" />
+        <a href="http://www.google.com/" target="blank_" title="Some Super Site">
+              Some Site
+        </a>
+      </div>
+    </div>
+    ...
+    </html>

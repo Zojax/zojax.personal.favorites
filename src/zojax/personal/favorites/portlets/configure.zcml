@@ -1,0 +1,41 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.personal.favorites">
+
+  <!-- portlet managers -->
+  <zojax:portletManager
+     name="columns.left"
+     title="Left column portlets"
+     for="..interfaces.IFavoritesWorkspace"
+     class="zojax.personal.space.portletmanager.PortletManager"
+     portlettype="zojax.personal.space.interfaces.IPersonalWorkspacePortlet" />
+
+  <zojax:portletManager
+     name="columns.right"
+     title="Right column portlets"
+     for="..interfaces.IFavoritesWorkspace"
+     schema=".interfaces.IPersonalFavoritesPortletManager"
+     class="zojax.personal.space.portletmanager.PortletManager"
+     portlettype="zojax.personal.space.interfaces.IPersonalWorkspacePortlet" />
+
+  <!-- your favorites portlet -->
+  <zojax:portlet
+     title="My Links"
+     name="personal.favorites.yourfavorites"
+     type="zojax.personal.space.interfaces.IPersonalWorkspacePortlet"
+     class=".favorites.YourFavoritesPortlet"
+     schema=".interfaces.IPersonalFavoritesPortlet" />
+
+  <zojax:portlet
+     title="My Links"
+     name="personal.favorites.yourfavorites"
+     class=".favorites.YourFavoritesPortlet"
+     schema=".interfaces.IPersonalFavoritesPortlet" />
+
+  <zojax:pagelet
+     type="portlet.view"
+     for=".favorites.YourFavoritesPortlet"
+     template="favorites.pt" />
+
+</configure>
