@@ -1,27 +1,8 @@
-=======
-CHANGES
-=======
-
-0.1.3 (Unreleased)
-
-- Added label field to favorites portlet
-
-- Fixed overview link
-
-
-0.1.2 (2009-10-21)
+1.0.2 (Unreleased)
 ------------------
 
-- Fix empty message text
 
-
-0.1.1 (2009-08-27)
+1.0.1 (2010-01-19)
 ------------------
 
-- Update tests
-
-
-0.1.0 (2009-08-13)
-------------------
-
-- Initial release
+- zojax initial release
