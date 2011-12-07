@@ -1,4 +1,4 @@
-<div class="z-portlet portlet-yourfavorites" i18n:domain="zojax.personal.content">
+<div class="z-portlet portlet-yourfavorites" i18n:domain="zojax.personal.favorites">
 
   <h2 class="z-portlet-header" i18n:translate="">
   <tal:block
