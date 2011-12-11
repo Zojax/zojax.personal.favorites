@@ -1,13 +1,11 @@
 <div class="z-portlet portlet-yourfavorites" i18n:domain="zojax.personal.favorites">
 
-  <h2 class="z-portlet-header" i18n:translate="">
+  <h2 class="z-portlet-header">
   <tal:block
       tal:condition="not: context/label"
-      tal:content="context/title"
-      i18n:translate="">Tags</tal:block>
+      tal:content="context/title">Tags</tal:block>
     <tal:block content="context/label"
-      tal:condition="context/label"
-      i18n:translate="">Portlet Header</tal:block>
+      tal:condition="context/label">Portlet Header</tal:block>
   </h2>
   
 
