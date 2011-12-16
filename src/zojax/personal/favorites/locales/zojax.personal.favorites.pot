@@ -1,0 +1,156 @@
+##############################################################################
+#
+# Copyright (c) 2003-2004 Zope Corporation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
+msgid ""
+msgstr ""
+"Project-Id-Version: Development/Unknown\n"
+"POT-Creation-Date: Sun Dec 11 11:25:08 2011\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Zope 3 Developers <zope3-dev@zope.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: zope/app/locales/extract.py\n"
+
+#: src/zojax/personal/favorites/browser/breadcrumb.py:32
+msgid "Your favorites"
+msgstr ""
+
+#: src/zojax/personal/favorites/browser/breadcrumb.py:35
+#. Default: ""
+msgid "${user_title}'s favorites"
+msgstr ""
+
+#: src/zojax/personal/favorites/browser/workspace.py:35
+msgid "Your Latest Favorites"
+msgstr ""
+
+#: src/zojax/personal/favorites/browser/workspace.py:37
+#. Default: ""
+msgid "${user_title}'s Latest Favorites"
+msgstr ""
+
+#: src/zojax/personal/favorites/browser/workspace.py:42
+msgid "Below is a list of favorites you created."
+msgstr ""
+
+#: src/zojax/personal/favorites/browser/workspace.py:44
+#. Default: ""
+msgid "Below is a list of favorites ${user_title} created."
+msgstr ""
+
+#: src/zojax/personal/favorites/browser/workspace.py:61
+#: src/zojax/personal/favorites/configure.zcml:7
+#: src/zojax/personal/favorites/configure.zcml:86
+msgid "Personal favorites"
+msgstr ""
+
+#: src/zojax/personal/favorites/browser/workspace.py:62
+#: src/zojax/personal/favorites/browser/workspace.py:75
+msgid "You do not have favorites yet."
+msgstr ""
+
+#: src/zojax/personal/favorites/browser/workspace.py:77
+msgid "He/she does not have favorites yet."
+msgstr ""
+
+#: src/zojax/personal/favorites/configure.zcml:27
+msgid "Favorites workspace"
+msgstr ""
+
+#: src/zojax/personal/favorites/configure.zcml:59
+msgid "Link"
+msgstr ""
+
+#: src/zojax/personal/favorites/configure.zcml:7
+msgid "Allow personal favorites for member."
+msgstr ""
+
+#: src/zojax/personal/favorites/configure.zcml:86
+msgid "These are the preferences related to personal favorites."
+msgstr ""
+
+#: src/zojax/personal/favorites/interfaces.py:30
+msgid "Title"
+msgstr ""
+
+#: src/zojax/personal/favorites/interfaces.py:31
+msgid "Favorite title."
+msgstr ""
+
+#: src/zojax/personal/favorites/interfaces.py:36
+msgid "Description"
+msgstr ""
+
+#: src/zojax/personal/favorites/interfaces.py:37
+msgid "Favorite description."
+msgstr ""
+
+#: src/zojax/personal/favorites/interfaces.py:50
+msgid "URL"
+msgstr ""
+
+#: src/zojax/personal/favorites/interfaces.py:51
+msgid "Link URL."
+msgstr ""
+
+#: src/zojax/personal/favorites/interfaces.py:63
+msgid "Allow others to view"
+msgstr ""
+
+#: src/zojax/personal/favorites/interfaces.py:64
+msgid "Allow other members view my favorites."
+msgstr ""
+
+#: src/zojax/personal/favorites/portlets/configure.zcml:14
+msgid "Right column portlets"
+msgstr ""
+
+#: src/zojax/personal/favorites/portlets/configure.zcml:23
+#: src/zojax/personal/favorites/portlets/configure.zcml:30
+msgid "My Links"
+msgstr ""
+
+#: src/zojax/personal/favorites/portlets/configure.zcml:7
+msgid "Left column portlets"
+msgstr ""
+
+#: src/zojax/personal/favorites/portlets/favorites.pt:16
+msgid "Overview"
+msgstr ""
+
+#: src/zojax/personal/favorites/portlets/favorites.py:54
+#. Default: ""
+msgid "${title}'s links"
+msgstr ""
+
+#: src/zojax/personal/favorites/portlets/interfaces.py:28
+#: src/zojax/personal/favorites/tests/interfaces.py:28
+msgid "Portlets"
+msgstr ""
+
+#: src/zojax/personal/favorites/portlets/interfaces.py:37
+msgid "Label"
+msgstr ""
+
+#: src/zojax/personal/favorites/workspace.py:39
+#: src/zojax/personal/favorites/workspace.py:52
+msgid "Favorites"
+msgstr ""
+
+#: src/zojax/personal/favorites/workspace.py:53
+#: src/zojax/personal/favorites/workspace.py:70
+msgid "Personal favorites."
+msgstr ""
+
